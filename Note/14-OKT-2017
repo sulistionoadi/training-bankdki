@@ -1,0 +1,71 @@
+Java Fundamental
+----------------
+
+1. Intro
+2. Basic Programming
+   - File Extension
+   - statement
+   - variable
+   - method (function)
+   - operator
+   - conditional and looping
+   - comment
+3. Class, Variable, Method, Package
+   Cara penulisan nama
+3. Inheritance, Polymorphism
+4. JDBC
+
+CODE CONVENTION
+---------------------------
+1. Class -> Huruf pertama huruf kapital
+         -> tidak boleh diawali dengan angka, atau karakter lain
+         -> Jika nama lebih dari 1 kata, Huruf pertama kata berikutnya adalah huruf kapital
+
+2. variable / method
+         -> huruf pertama huruf kecil
+         -> tidak boleh diawali dengan angka, atau karakter lain
+         -> Jika nama lebih dari 1 kata, Huruf pertama kata berikutnya adalah huruf kapital
+
+METHOD
+-------------------------
+penulisan method 
+   <access modifier> <return value> <method name> ([parameters])
+
+1. with return value
+   
+   public String calculate(int val1, int val2){
+		return val1 + val2;
+   }
+   
+2. no return value
+	
+	public void logTransaction(Transaction trx){
+		log.info("Save Transaction " + trx);
+	}
+
+ACCESS MODIFIER
+----------------------------------
+- private -> cuma bisa diakses di class sendiri
+- public -> bisa diakses di semua class
+- protected -> hanya bisa diakses di class turunan
+- static ->
+
+
+CONSTRUCTOR 
+-------------------------------
+- Dia penulisannya hampir sama dengan method, tapi tidak ada tipe balikan
+- Nama constructor harus sama dengan nama class-nya
+- 1 class pasti punya 1 constructor (default/kosong)
+- 1 class bisa punya lebih dari 1 constructor
+- constructor digunakan untuk meng-inisialisasi object baru
+  yang ciri-ciri nya diawali dengan new.
+
+INHERITANCE 
+--------------------------
+1. <extends> class-to-class, 
+   class turunan bisa langsung mendapatkan property (variable) atau method dari parent class
+
+2. <implements> interface-to-class,
+   class yang mengimplements interface harus menulis ulang / mengimplementasikan method dari interface
+
+
