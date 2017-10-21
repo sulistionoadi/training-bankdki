@@ -1,3 +1,14 @@
 Alamat Repository Project
 
 https://github.com/sulistionoadi/training-bankdki
+
+@ManyToOne : Untuk memberikan penjelasan relasi manyToOne ke entity lain
+@JoinColumn: Untuk membuat relasi foreign key ke database
+@OneToMany : Untuk memberikan penjelasan relasi oneToMany ke collection of entity
+ - Cascade : CascadeType.ALL -> jika melakukan save/delete header, 
+                                maka detail juga ikut di save/delete
+             CascadeType.PERSIST -> jika melakukan save header, detail juga ikut di save
+             CascadeType.REMOVE  -> jika melakukan delete header, detail juga ikut di delete
+ - mappedBy: harus sama dengan nama property di java, yang direlasikan dengan @ManyToOne
+ - fetch   : FetchType.EAGER  -> ketika query header, details otomatis akan ikut diambil datanya
+             FetchType.LAZY   -> ketika query header, details tidak akan ikut diambil datanya

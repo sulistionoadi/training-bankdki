@@ -6,11 +6,13 @@
 package com.artivisi.project.trainingmodel.entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -46,8 +48,9 @@ public class TransactionHeader {
     @JoinColumn(name="id_customer", nullable = false)
     private Customer customer;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "header")
-    private List<TransactionDetail> details;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "header", 
+            fetch = FetchType.EAGER)
+    private List<TransactionDetail> details = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -87,6 +90,11 @@ public class TransactionHeader {
 
     public void setDetails(List<TransactionDetail> details) {
         this.details = details;
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionHeader{" + "id=" + id + ", transactionDate=" + transactionDate + ", transactionAmount=" + transactionAmount + ", customer=" + customer + '}';
     }
     
 }

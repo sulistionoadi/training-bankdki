@@ -70,5 +70,10 @@ public class TransactionDetail {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
+
+    @Override
+    public String toString() {
+        return "TransactionDetail{" + "description=" + description + ", amount=" + amount + '}';
+    }
     
 }
