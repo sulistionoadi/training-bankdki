@@ -12,3 +12,5 @@ https://github.com/sulistionoadi/training-bankdki
  - mappedBy: harus sama dengan nama property di java, yang direlasikan dengan @ManyToOne
  - fetch   : FetchType.EAGER  -> ketika query header, details otomatis akan ikut diambil datanya
              FetchType.LAZY   -> ketika query header, details tidak akan ikut diambil datanya
+
+@Transactional : memberikan keterangan pada method tersebut sebagai satu siklus transaction

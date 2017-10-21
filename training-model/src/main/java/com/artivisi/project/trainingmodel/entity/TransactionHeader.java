@@ -48,6 +48,7 @@ public class TransactionHeader {
     @JoinColumn(name="id_customer", nullable = false)
     private Customer customer;
     
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "header")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "header", 
             fetch = FetchType.EAGER)
     private List<TransactionDetail> details = new ArrayList<>();
@@ -94,7 +95,7 @@ public class TransactionHeader {
 
     @Override
     public String toString() {
-        return "TransactionHeader{" + "id=" + id + ", transactionDate=" + transactionDate + ", transactionAmount=" + transactionAmount + ", customer=" + customer + '}';
+        return "TransactionHeader{" + "id=" + id + ", transactionDate=" + transactionDate + ", transactionAmount=" + transactionAmount + ", customer=" + customer + ", details=" + details + '}';
     }
     
 }

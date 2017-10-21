@@ -10,10 +10,12 @@ import com.artivisi.project.trainingmodel.dao.TransactionHeaderDao;
 import com.artivisi.project.trainingmodel.entity.Customer;
 import com.artivisi.project.trainingmodel.entity.TransactionDetail;
 import com.artivisi.project.trainingmodel.entity.TransactionHeader;
+import com.artivisi.project.trainingmodel.service.TransactionService;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.transaction.Transactional;
-import org.hibernate.Hibernate;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,8 +34,9 @@ public class TransactionTest {
     
     @Autowired private CustomerDao customerDao;
     @Autowired private TransactionHeaderDao transactionDao;
+    @Autowired private TransactionService transactionService;
     
-//    @Test
+    @Test
     public void saveTransaction(){
         Customer customer = customerDao.findOne("11c6cc65-801a-456e-a8e2-8f57a8abf449");
         
@@ -46,7 +49,7 @@ public class TransactionTest {
         TransactionDetail detail1 = new TransactionDetail();
         detail1.setHeader(header);
         detail1.setDescription("Transfer antar bank");
-        detail1.setAmount(new BigDecimal(500000));
+        detail1.setAmount(new BigDecimal(100000));
         header.getDetails().add(detail1);
         
         TransactionDetail detail2 = new TransactionDetail();
@@ -57,10 +60,16 @@ public class TransactionTest {
         
         header.setTransactionAmount(detail1.getAmount().add(detail2.getAmount()));
         
-        transactionDao.save(header);
+        try {
+            //transactionDao.save(header);
+            transactionService.saveTrxAndUpdateBalance(header);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
-    @Test
+    //@Test
+    @Transactional
     public void testFetch(){
         TransactionHeader header = transactionDao.findOne("4acd04ce-07d3-4319-9444-5b959197abcc");
         Assert.assertNotNull(header);

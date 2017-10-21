@@ -73,7 +73,7 @@ public class TransactionDetail {
 
     @Override
     public String toString() {
-        return "TransactionDetail{" + "description=" + description + ", amount=" + amount + '}';
+        return "TransactionDetail{" + "id=" + id + ", description=" + description + ", amount=" + amount + '}';
     }
-    
+
 }
