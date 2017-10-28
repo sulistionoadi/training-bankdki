@@ -1,0 +1,15 @@
+Spring Web (dengan Spring Boot)
+
+- generate project baru melalui start.spring.io
+  - pilih versi spring-boot 1.5.8
+  - isi groupId dan artifactId 
+    misal groupId		: com.artivisi.project
+          artifactId	: training-web
+  - dependency yang dipilih adalah Web (spring-boot-starter-web) dan Thymeleaf
+  
+- Setting port
+- Test Running
+
+- Download tema web
+
+- Template css, js, image disimpan di folder src/main/resources/static
