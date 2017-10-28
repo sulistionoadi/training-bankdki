@@ -7,6 +7,8 @@ package com.artivisi.project.trainingweb.controller;
 
 import com.artivisi.project.trainingmodel.dao.CustomerDao;
 import com.artivisi.project.trainingmodel.entity.Customer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,8 +29,12 @@ public class CustomerController {
     @Autowired 
     private CustomerDao customerDao;
     
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    
     @RequestMapping(value="/customer/list", method=RequestMethod.GET)
     public void showListCustomer(ModelMap mm){
+        log.info("Tampilkan data list customer");
+        
         Iterable<Customer> listCustomer = customerDao.findAll();
         mm.addAttribute("listCustomers", listCustomer);
     }
