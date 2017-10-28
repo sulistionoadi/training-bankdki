@@ -693,7 +693,7 @@
 <!-- ./wrapper -->
 
 <section th:remove="tag" th:replace="fragments/scripts :: footer" />
-<section th:remove="tag" th:replace="fragments/scripts :: footer-js" />
+<section th:remove="tag" layout:fragment="footer-js" />
 
 </body>
 </html>

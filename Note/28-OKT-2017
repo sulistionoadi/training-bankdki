@@ -12,4 +12,23 @@ Spring Web (dengan Spring Boot)
 
 - Download tema web
 
-- Template css, js, image disimpan di folder src/main/resources/static
+- Template css, js, image disimpan di folder static path=src/main/resources/static
+- Bikin class WebConfig untuk mapping root-url (/) ke file html template (index.html)
+- tambahkan namespace untuk thymeleaf, ditaruh di tag <html>
+  <html xmlns:th="http://www.thymeleaf.org">
+- Didalam file HTML, kita bisa memanggil file css, js, image dengan cara
+  th:src = @{/js/app.js}
+  th:href  = @{/css/style.css}
+
+Untuk bikin halaman / menu lain
+- Bikin Link URL di index.html		--> /customer/list
+- Bikin Controller					--> /customer/list
+- Bikin File HTML					--> /templates/customer/list.html
+
+
+HTTP METHOD
+- GET
+- POST
+- PUT
+- DELETE
+- OPTIONS

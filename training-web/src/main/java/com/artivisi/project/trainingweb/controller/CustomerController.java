@@ -53,4 +53,14 @@ public class CustomerController {
         return "redirect:list";
     }
     
+    @RequestMapping(value="/customer/delete", method=RequestMethod.POST)
+    public String saveCustomer(@RequestParam String id){
+        Customer cust = customerDao.findOne(id);
+        if(cust!=null) {
+            customerDao.delete(cust);
+        }
+        
+        return "redirect:list";
+    }
+    
 }

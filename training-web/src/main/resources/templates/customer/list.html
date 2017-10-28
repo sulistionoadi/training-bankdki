@@ -15,6 +15,9 @@
 
         <!-- Main content -->
         <section class="content">
+            <form th:action="@{/customer/delete}" id="deleteCust" method="POST">
+                <input type="hidden" id="idDelete" name="id"/>
+            </form>
             <div class="row">
                 <div class="col-md-12">
                     <div class="box">
@@ -67,6 +70,9 @@
                                                         <a th:href="@{/customer/form(id=${cust.id})}">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
+                                                        <a th:onclick="'javascript:deleteCust(\'' + ${cust.id} + '\');'">
+                                                            <i class="fa fa-remove"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -90,7 +96,18 @@
     <div th:remove="tag" layout:fragment="footer-js">
         <script type="text/javascript" th:inline="javascript">
             /*<![CDATA[*/
-            console.log("Open page customer/list.html")
+            function deleteCust(id){
+                bootbox.confirm({ 
+                    size: 'small',
+                    message: 'Apakah anda yakin menghapus data ini ?', 
+                    callback: function(result){
+                        if(result){
+                            $('#idDelete').val(id);
+                            $('#deleteCust').submit();
+                        }
+                    }
+                });
+            }
             /*]]>*/
         </script>
     </div>
