@@ -1,0 +1,24 @@
+Spring Web (dengan Spring Boot)
+
+### Save Header Detail
+
+- Membuat controller
+  - Add detail
+  - remove detail
+  - save all
+- Membuat view/ui
+  - Looping detail
+
+### Validasi Form
+
+- Menambahkan pom "hibernate validation"
+- Annotation validasi (domain/entity)
+- Menambahkan @valid
+- Menambahkan BindingResult untuk menampilkan error
+- Menampilkan error di html
+- Custom error message 
+  - Via attribut 
+  - Via Properties 
+
+### Jasper Report
+
