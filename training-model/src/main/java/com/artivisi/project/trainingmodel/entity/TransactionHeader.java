@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -37,6 +38,7 @@ public class TransactionHeader {
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String id;
     
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="transaction_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date transactionDate;
