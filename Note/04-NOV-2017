@@ -1,4 +1,10 @@
-Spring Web (dengan Spring Boot)
+Project : https://github.com/sulistionoadi/training-bankdki
+DB : createdb -OtrainingUser -Eutf8 db_training
+User : createuser -P trainingUser
+
+===================================================================================================
+===================================================================================================
+===================================================================================================
 
 ### Save Header Detail
 
@@ -12,13 +18,27 @@ Spring Web (dengan Spring Boot)
 ### Validasi Form
 
 - Menambahkan pom "hibernate validation"
+	https://mvnrepository.com/artifact/org.hibernate/hibernate-validator/6.0.4.Final
+
 - Annotation validasi (domain/entity)
+	https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/?v=6.0#section-builtin-constraints
+
 - Menambahkan @valid
 - Menambahkan BindingResult untuk menampilkan error
 - Menampilkan error di html
+
 - Custom error message 
+	https://docs.jboss.org/hibernate/validator/5.1/reference/en-US/html/chapter-message-interpolation.html#chapter-message-interpolation
   - Via attribut 
   - Via Properties 
 
 ### Jasper Report
 
+- Download Editor
+	https://community.jaspersoft.com/project/jaspersoft-studio/releases
+
+- Repository 
+  https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports/6.4.3
+
+- Show data report from database
+- Implement jasper template ke aplikasi
