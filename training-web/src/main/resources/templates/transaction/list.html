@@ -66,7 +66,7 @@
                                                         <a th:href="@{/transaction/form(id=${trx.id})}">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
-                                                        <a th:onclick="'javascript:deleteCust(\'' + ${trx.id} + '\');'">
+                                                        <a th:href="@{/transaction/delete(id=${trx.id})}">
                                                             <i class="fa fa-remove"></i>
                                                         </a>
                                                     </td>

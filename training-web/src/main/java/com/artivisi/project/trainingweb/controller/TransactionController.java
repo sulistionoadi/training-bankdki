@@ -16,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -39,11 +40,21 @@ public class TransactionController {
     }
 
     @GetMapping("/form")
-    public String getForm(ModelMap mm) {
+    public String getForm(@RequestParam(required = false) String id, ModelMap mm) {
         TransactionHeader header = new TransactionHeader();
+        if(id != null && id != ""){
+            header = transactionHeaderDao.findOne(id);
+        }
+        
         mm.addAttribute("header", header);
         mm.addAttribute("listCustomer", customerDao.findAll());
         return "transaction/form";
+    }
+    
+    @GetMapping("/delete")
+    public String deleteHeader(@RequestParam() String id){
+        transactionHeaderDao.delete(id);
+        return "redirect:/transaction/list";
     }
 
     @PostMapping("/form")
