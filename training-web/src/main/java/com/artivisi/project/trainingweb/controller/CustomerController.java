@@ -23,6 +23,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -60,6 +61,8 @@ public class CustomerController {
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperStream);
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), new JRBeanCollectionDataSource((Collection<?>) listCustomer));
+
+        response.setContentType(MediaType.APPLICATION_PDF_VALUE);
 
         final OutputStream outStream = response.getOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);

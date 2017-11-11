@@ -71,12 +71,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/font/**").permitAll()
+                .antMatchers("/img/**").permitAll()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/plugins/**").permitAll()
                 .anyRequest().authenticated()
             .and()
                 // some more method calls
-                .formLogin()
+                .formLogin().loginPage("/login").permitAll()
+                .defaultSuccessUrl("/", true)
             .and()
                 .logout()
+                .logoutSuccessUrl("/login?logout")
             .and()
                 .csrf().disable();
     }
