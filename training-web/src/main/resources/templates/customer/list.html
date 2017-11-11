@@ -55,7 +55,7 @@
                                                     <th>BirthDate</th>
                                                     <th>Address</th>
                                                     <th class="text-center">
-                                                        <a th:href="@{/customer/form}">
+                                                        <a sec:authorize="hasRole('ROLE_MENU_FORM_CUSTOMER')" th:href="@{/customer/form}">
                                                             <i class="fa fa-plus-circle"></i>
                                                         </a>
                                                     </th>
@@ -68,10 +68,10 @@
                                                     <td><span th:text="${cust.birthDate}"> - </span></td>
                                                     <td><span th:text="${cust.address}"> - </span></td>
                                                     <td>
-                                                        <a th:href="@{/customer/form(id=${cust.id})}">
+                                                        <a sec:authorize="hasRole('ROLE_MENU_FORM_CUSTOMER')" th:href="@{/customer/form(id=${cust.id})}">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
-                                                        <a th:onclick="'javascript:deleteCust(\'' + ${cust.id} + '\');'">
+                                                        <a sec:authorize="hasRole('ROLE_ACT_DEL_CUSTOMER')" th:onclick="'javascript:deleteCust(\'' + ${cust.id} + '\');'">
                                                             <i class="fa fa-remove"></i>
                                                         </a>
                                                     </td>

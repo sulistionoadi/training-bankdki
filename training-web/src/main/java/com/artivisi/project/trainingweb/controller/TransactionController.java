@@ -11,6 +11,7 @@ import com.artivisi.project.trainingmodel.entity.TransactionDetail;
 import com.artivisi.project.trainingmodel.entity.TransactionHeader;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,7 @@ public class TransactionController {
     @Autowired
     private CustomerDao customerDao;
 
+    @PreAuthorize("hasRole('ROLE_MENU_LIST_TRANSAKSI')")
     @GetMapping("/list")
     public String getList(ModelMap mm) {
         Iterable<TransactionHeader> result = transactionHeaderDao.findAll();
@@ -39,6 +41,7 @@ public class TransactionController {
         return "transaction/list";
     }
 
+    @PreAuthorize("hasRole('ROLE_MENU_FORM_TRANSAKSI')")
     @GetMapping("/form")
     public String getForm(@RequestParam(required = false) String id, ModelMap mm) {
         TransactionHeader header = new TransactionHeader();
@@ -51,12 +54,14 @@ public class TransactionController {
         return "transaction/form";
     }
     
+    @PreAuthorize("hasRole('ROLE_ACT_DEL_TRANSAKSI')")
     @GetMapping("/delete")
     public String deleteHeader(@RequestParam() String id){
         transactionHeaderDao.delete(id);
         return "redirect:/transaction/list";
     }
 
+    @PreAuthorize("hasRole('ROLE_MENU_FORM_TRANSAKSI')")
     @PostMapping("/form")
     public String saveHeader(TransactionHeader transactionHeader) {
         for(TransactionDetail detail : transactionHeader.getDetails()){
@@ -68,6 +73,7 @@ public class TransactionController {
         return "redirect:/transaction/list";
     }
 
+    @PreAuthorize("hasRole('ROLE_MENU_FORM_TRANSAKSI')")
     @PostMapping(value = "/form", params = {"add"})
     public String addDetail(TransactionHeader transactionHeader, ModelMap mm) {
         TransactionDetail detail = new TransactionDetail();
@@ -78,6 +84,7 @@ public class TransactionController {
         return "transaction/form";
     }
 
+    @PreAuthorize("hasRole('ROLE_MENU_FORM_TRANSAKSI')")
     @PostMapping(value = "/form", params = {"remove"})
     public String removeDetail(TransactionHeader transactionHeader, HttpServletRequest request, ModelMap mm) {
         

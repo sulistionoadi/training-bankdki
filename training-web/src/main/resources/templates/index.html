@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -317,8 +318,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a th:href="@{/customer/list}"><i class="fa fa-circle-o"></i> Data Customer</a></li>
-            <li><a th:href="@{/transaction/list}"><i class="fa fa-circle-o"></i> Data Transaksi</a></li>
+            <li sec:authorize="hasRole('ROLE_MENU_LIST_CUSTOMER')"><a th:href="@{/customer/list}"><i class="fa fa-circle-o"></i> Data Customer</a></li>
+            <li sec:authorize="hasRole('ROLE_MENU_LIST_TRANSAKSI')"><a th:href="@{/transaction/list}"><i class="fa fa-circle-o"></i> Data Transaksi</a></li>
           </ul>
         </li>
       </ul>

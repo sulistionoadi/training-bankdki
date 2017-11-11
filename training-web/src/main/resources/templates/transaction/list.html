@@ -46,12 +46,11 @@
                                         <table class="table no-margin">
                                             <thead>
                                                 <tr>
-                                                    <th></th>
                                                     <th>Transaction Date</th>
                                                     <th>Transaction Amount</th>
                                                     <th>Customer</th>
                                                     <th class="text-center">
-                                                        <a th:href="@{/transaction/form}">
+                                                        <a sec:authorize="hasRole('ROLE_MENU_FORM_TRANSAKSI')" th:href="@{/transaction/form}">
                                                             <i class="fa fa-plus-circle"></i>
                                                         </a>
                                                     </th>
@@ -63,10 +62,10 @@
                                                     <td><span th:text="${trx.transactionAmount}"> - </span></td>
                                                     <td><span th:text="${trx.customer.firstname}"> - </span></td>
                                                     <td>
-                                                        <a th:href="@{/transaction/form(id=${trx.id})}">
+                                                        <a sec:authorize="hasRole('ROLE_MENU_FORM_TRANSAKSI')" th:href="@{/transaction/form(id=${trx.id})}">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
-                                                        <a th:href="@{/transaction/delete(id=${trx.id})}">
+                                                        <a sec:authorize="hasRole('ROLE_ACT_DEL_TRANSAKSI')" th:href="@{/transaction/delete(id=${trx.id})}">
                                                             <i class="fa fa-remove"></i>
                                                         </a>
                                                     </td>

@@ -24,6 +24,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -45,6 +47,7 @@ public class CustomerController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+    @PreAuthorize("hasRole('ROLE_MENU_LIST_CUSTOMER')")
     @RequestMapping(value = "/customer/list", method = RequestMethod.GET)
     public void showListCustomer(ModelMap mm) {
         log.info("Tampilkan data list customer");
@@ -53,6 +56,7 @@ public class CustomerController {
         mm.addAttribute("listCustomers", listCustomer);
     }
 
+    @PreAuthorize("hasRole('ROLE_MENU_LIST_CUSTOMER')")
     @GetMapping("/customer/download")
     public void downloadCustomer(HttpServletResponse response) throws JRException, IOException {
         Iterable<Customer> listCustomer = customerDao.findAll();
@@ -68,6 +72,7 @@ public class CustomerController {
         JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
     }
 
+    @PreAuthorize("hasRole('ROLE_MENU_FORM_CUSTOMER')")
     @RequestMapping(value = "/customer/form", method = RequestMethod.GET)
     public void showFormCustomer(ModelMap mm, @RequestParam(required = false) String id) {
         Customer cust = null;
@@ -88,6 +93,7 @@ public class CustomerController {
         return "redirect:list";
     }
 
+    @PreAuthorize("hasRole('ROLE_ACT_DEL_CUSTOMER')")
     @RequestMapping(value = "/customer/delete", method = RequestMethod.POST)
     public String saveCustomer(@RequestParam String id) {
         Customer cust = customerDao.findOne(id);
