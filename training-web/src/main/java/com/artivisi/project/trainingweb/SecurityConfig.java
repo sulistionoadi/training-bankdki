@@ -5,6 +5,7 @@
  */
 package com.artivisi.project.trainingweb;
 
+import com.artivisi.project.trainingweb.security.LoginFailureHandler;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //Otomatis mengambil setting koneksi database dari file application.properties
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private LoginFailureHandler loginFailureHandler;
 
     //username, password, active
     private static final String SQL_LOGIN
@@ -76,10 +79,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/img/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/plugins/**").permitAll()
+                .antMatchers("/login**").permitAll()
                 .anyRequest().authenticated()
             .and()
                 // some more method calls
                 .formLogin().loginPage("/login").permitAll()
+                .failureHandler(loginFailureHandler)
                 .defaultSuccessUrl("/", true)
             .and()
                 .logout()
