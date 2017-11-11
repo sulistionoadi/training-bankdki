@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -32,7 +34,14 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
         log.warn("[AUTH] - [ERROR] Login Gagal [{}]", exception.getMessage());
         
         HttpSession session = request.getSession();
-        session.setAttribute("authError", "Username atau Password Salah !");
+        
+        if(exception instanceof SessionAuthenticationException) {
+            session.setAttribute("authError", "Username sudah digunakan, ditempat lain !");
+        } else if (exception instanceof BadCredentialsException) {
+            session.setAttribute("authError", "Username atau Password Salah !");
+        } else {
+            session.setAttribute("authError", "Error tidak terdefinisi");
+        }
 
         getRedirectStrategy().sendRedirect(request, response, "/login?error");
     }
