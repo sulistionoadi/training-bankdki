@@ -1,0 +1,23 @@
+Spring Security
+
+Framework yang digunakan untuk Otentikasi ke aplikasi
+
+Table yang harus dibikin ada 4
+a. User
+b. Role
+c. Permission
+d. RolePermission --> @JoinTable, otomatis JPA akan membuatkan table
+   relasi manyToMany
+   
+Untuk menggunakan spring-security, ada beberapa langkah yang dilakukan
+1. Tambahkan dependency library 
+   - spring-boot-starter-security
+   - security-config
+2. Bikin class SecurityConfig
+   - Tambahkan Anotasi @EnableWebSecurity untuk mengaktifkan fitur spring-security
+   - Extends ke class WebSecurityConfigurerAdapter
+3. kita harus menyediakan 2 Query yaitu
+   - Query untuk mencocokan username dan password
+     result column harus --> username, password, active
+   - Query untuk mengambil permission access dari username
+     result column harus --> username, authority
